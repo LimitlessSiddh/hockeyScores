@@ -1,0 +1,116 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #f4f6f8;
+    padding: 2rem;
+  }
+  
+  .welcome-banner {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInUp 1.1s ease-out;
+  }
+  
+  .welcome-sub {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #3a3f58;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+  
+  .brand-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin: 0.4rem 0 0;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+    cursor: default;
+  }
+  
+  .brand-title:hover {
+    transform: scale(1.03);
+    text-shadow: 0 0 12px rgba(0, 123, 255, 0.5), 0 0 20px rgba(0, 198, 255, 0.3);
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+    color: #444;
+    font-weight: 500;
+    margin-top: 0.8rem;
+    opacity: 0.85;
+    animation: fadeIn 1.6s ease-in-out;
+  }
+  
+  
+  
+  
+  
+  .login-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .login-card h2 {
+    margin-bottom: 2rem;
+    color: #202334;
+  }
+  
+  label {
+    display: block;
+    text-align: left;
+    margin: 1rem 0 0.4rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus {
+    border-color: #0a3d62;
+  }
+  
+  button {
+    margin-top: 2rem;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #0a3d62;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #074d8a;
+  }
+  
+  button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+  }
+  

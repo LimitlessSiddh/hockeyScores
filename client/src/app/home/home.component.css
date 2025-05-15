@@ -1,0 +1,171 @@
+:root {
+    --bg: #ffffff;
+    --card: #f8f9fa;
+    --text: #202334;
+    --highlight: #0a3d62;
+    --border: #ccc;
+    --hover: #e0e0e0;
+    --button: #202334;
+    --button-hover: #3a3f58;
+  }
+  
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Top Right Logout Button */
+  .top-bar {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    z-index: 1000;
+  }
+  
+  .top-bar button {
+    background-color: #f0f0f0;
+    color: #202334;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 1px solid #999;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .top-bar button:hover {
+    background-color: #dcdcdc;
+    color: #000;
+  }
+  
+  
+  h1 {
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  
+  h3 {
+    font-size: 1.6rem;
+    color: var(--highlight);
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+  }
+  
+  strong {
+    font-size: 1.2rem;
+    color: var(--highlight);
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li.game-card {
+    animation: fadeInUp 0.4s ease-out;
+    background: var(--card);
+    color: var(--text);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+  
+  li.game-card:hover {
+    transform: scale(1.03);
+    background: var(--hover);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  
+  /* Team Layout */
+  .teams {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.75rem 0;
+  }
+  
+  .team {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 45%;
+  }
+  
+  .team-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .team-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  .score {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-top: 2px;
+    display: inline-block;
+    background-color: #e4e6eb;
+    color: #202334;
+  }
+  
+  .team img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: white;
+    border: 1px solid var(--border);
+  }
+  
+  .vs {
+    font-weight: bold;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  
+  /* Center button (fallback, not used now) */
+  button {
+    margin-top: 2rem;
+    display: block;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--button);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: var(--button-hover);
+  }
+  
+  /* Animation */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

@@ -1,0 +1,83 @@
+<h1>NHL Scores</h1>
+<div class="top-bar">
+    <button (click)="logout()"> Logout</button>
+  </div>
+  
+
+<div *ngIf="loading">
+  <p>Loading games...</p>
+</div>
+
+<div *ngIf="!loading">
+  <!-- Today's Games -->
+  <section *ngIf="todayGames.length > 0">
+    <h3>Today's Games</h3>
+    <ul>
+      <li *ngFor="let game of todayGames" class="game-card">
+        <strong>{{ game.name }}</strong><br />
+
+        <div class="teams">
+          <div class="team">
+            <img [src]="game.homeLogo" alt="{{ game.homeTeam }}" />
+            <div class="team-info">
+              <span class="team-name">{{ game.homeTeam }}</span>
+              <span class="score score-home">{{ game.homeScore }}</span>
+            </div>
+          </div>
+
+          <div class="vs">vs</div>
+
+          <div class="team">
+            <img [src]="game.awayLogo" alt="{{ game.awayTeam }}" />
+            <div class="team-info">
+              <span class="team-name">{{ game.awayTeam }}</span>
+              <span class="score score-away">{{ game.awayScore }}</span>
+            </div>
+          </div>
+        </div>
+
+        <span *ngIf="game.isLive" style="color: red; font-weight: bold;">🔴 LIVE</span>
+        <span *ngIf="!game.isLive"> {{ game.date | date: 'MMMM d, h:mm a' }}</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Past Games -->
+  <section *ngIf="pastGames.length > 0">
+    <h3>Past Games</h3>
+    <ul>
+      <li *ngFor="let game of pastGames" class="game-card">
+        <strong>{{ game.name }}</strong><br />
+
+        <div class="teams">
+          <div class="team">
+            <img [src]="game.homeLogo" alt="{{ game.homeTeam }}" />
+            <div class="team-info">
+              <span class="team-name">{{ game.homeTeam }}</span>
+              <span class="score score-home">{{ game.homeScore }}</span>
+            </div>
+          </div>
+
+          <div class="vs">vs</div>
+
+          <div class="team">
+            <img [src]="game.awayLogo" alt="{{ game.awayTeam }}" />
+            <div class="team-info">
+              <span class="team-name">{{ game.awayTeam }}</span>
+              <span class="score score-away">{{ game.awayScore }}</span>
+            </div>
+          </div>
+        </div>
+
+         {{ game.date | date: 'MMMM d, h:mm a' }}
+      </li>
+    </ul>
+  </section>
+
+  <p *ngIf="todayGames.length === 0 && pastGames.length === 0" style="text-align: center; margin-top: 2rem;">
+    No games from today or yesterday.
+  </p>
+</div>
+
+
+  
