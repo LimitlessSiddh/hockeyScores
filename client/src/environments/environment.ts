@@ -1,5 +1,5 @@
 export const environment = {
-    production: false,
+    production: true,
     API_URL: 'https://hockeyscores.onrender.com'
   };
   
