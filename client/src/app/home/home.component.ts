@@ -1,16 +1,18 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router'; // ✅ added RouterModule and Router
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule], // ✅ include RouterModule for navigation
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   private http = inject(HttpClient);
+  private router = inject(Router); // ✅ inject router
   loading = true;
   todayGames: any[] = [];
   pastGames: any[] = [];
@@ -71,10 +73,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  
-
-  logout() {
-    localStorage.removeItem('user');
-    location.href = '/login';
+  logout(): void {
+    localStorage.removeItem('token');         // ✅ clear token
+    this.router.navigate(['/login']);         // ✅ redirect using router
   }
 }
