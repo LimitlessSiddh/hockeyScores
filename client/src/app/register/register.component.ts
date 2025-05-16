@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Router } from '@angular/router'; // ✅ Add RouterModule
+import { RouterModule, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment'; 
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule], // ✅ Include RouterModule
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -23,13 +24,12 @@ export class RegisterComponent {
     const trimmedEmail = this.email.trim();
     const trimmedPassword = this.password.trim();
 
-    this.http.post<any>('http://localhost:5050/api/auth/register', {
+    this.http.post<any>(`${environment.API_URL}/api/auth/register`, {
       email: trimmedEmail,
       password: trimmedPassword
     }).subscribe({
       next: () => {
-        // After successful registration, now login the user
-        this.http.post<any>('http://localhost:5050/api/auth/login', {
+        this.http.post<any>(`${environment.API_URL}/api/auth/login`, {
           email: trimmedEmail,
           password: trimmedPassword
         }).subscribe({
