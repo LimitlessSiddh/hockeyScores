@@ -42,42 +42,44 @@
     </ul>
   </section>
 
+  
   <!-- Past Games -->
-  <section *ngIf="pastGames.length > 0">
-    <h3>Past Games</h3>
-    <ul>
-      <li *ngFor="let game of pastGames" class="game-card">
-        <strong>{{ game.name }}</strong><br />
+<section *ngIf="pastGames.length > 0">
+  <h3>Past Games</h3>
 
-        <div class="teams">
-          <div class="team">
-            <img [src]="game.homeLogo" alt="{{ game.homeTeam }}" />
-            <div class="team-info">
-              <span class="team-name">{{ game.homeTeam }}</span>
-              <span class="score score-home">{{ game.homeScore }}</span>
-            </div>
-          </div>
+  <p *ngIf="todayGames.length === 0 && pastGames.length === 1" style="text-align: center; color: gray; font-style: italic;">
+    No recent games. Showing the latest available NHL game instead.
+  </p>
 
-          <div class="vs">vs</div>
+  <ul>
+    <li *ngFor="let game of pastGames" class="game-card">
+      <strong>{{ game.name }}</strong><br />
 
-          <div class="team">
-            <img [src]="game.awayLogo" alt="{{ game.awayTeam }}" />
-            <div class="team-info">
-              <span class="team-name">{{ game.awayTeam }}</span>
-              <span class="score score-away">{{ game.awayScore }}</span>
-            </div>
+      <div class="teams">
+        <div class="team">
+          <img [src]="game.homeLogo" alt="{{ game.homeTeam }}" />
+          <div class="team-info">
+            <span class="team-name">{{ game.homeTeam }}</span>
+            <span class="score score-home">{{ game.homeScore }}</span>
           </div>
         </div>
 
-         {{ game.date | date: 'MMMM d, h:mm a' }}
-      </li>
-    </ul>
-  </section>
+        <div class="vs">vs</div>
 
-  <p *ngIf="todayGames.length === 0 && pastGames.length === 0" style="text-align: center; margin-top: 2rem;">
-    No games from today or yesterday.
-  </p>
-</div>
+        <div class="team">
+          <img [src]="game.awayLogo" alt="{{ game.awayTeam }}" />
+          <div class="team-info">
+            <span class="team-name">{{ game.awayTeam }}</span>
+            <span class="score score-away">{{ game.awayScore }}</span>
+          </div>
+        </div>
+      </div>
+
+      <span> {{ game.date | date: 'MMMM d, h:mm a' }}</span>
+    </li>
+  </ul>
+</section>
+
 
 
   
