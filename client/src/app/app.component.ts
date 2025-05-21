@@ -13,21 +13,22 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent {
   currentRoute = '';
+  showNav = false;
 
   constructor(private router: Router) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.currentRoute = event.url;
+        const hiddenRoutes = ['/login', '/register'];
+        const token = localStorage.getItem('token') || localStorage.getItem('firebaseToken');
+        this.showNav = !!token && !hiddenRoutes.includes(this.currentRoute);
       });
   }
 
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
-  }
-
-  showNavbar(): boolean {
-    const hiddenRoutes = ['/login', '/register'];
-    return this.isAuthenticated() && !hiddenRoutes.includes(this.currentRoute);
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('firebaseToken');
+    this.router.navigate(['/login']);
   }
 }
