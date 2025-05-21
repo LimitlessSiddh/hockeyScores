@@ -1,9 +1,10 @@
-<nav *ngIf="showNav">
+<div *ngIf="loading()">Loading...</div>
+<div *ngIf="!loading()">
+  <nav *ngIf="showNavbar()">
     <a routerLink="/home" routerLinkActive="active">Home</a>
     <a routerLink="/player-stats" routerLinkActive="active">Player Stats</a>
     <a routerLink="/goalie-stats" routerLinkActive="active">Goalie Stats</a>
-    
+   
   </nav>
-  
   <router-outlet></router-outlet>
-  
+</div>
