@@ -20,18 +20,23 @@ export class LoginComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(): void {
+    console.log('🔐 Login function triggered');
+
     this.http.post<any>(`${environment.API_URL}/api/auth/login`, {
       email: this.email,
       password: this.password
     }).subscribe({
       next: (res) => {
+        console.log('✅ Login success:', res);
         localStorage.setItem('token', res.token);
-        this.router.navigate(['/home']);
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 100); // slight delay ensures localStorage is committed
       },
       error: (err) => {
+        console.error('❌ Login error:', err);
         this.error = err.error?.message || 'Login failed';
       }
     });
   }
 }
-

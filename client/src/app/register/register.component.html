@@ -1,51 +1,50 @@
 <div class="register-container">
-    <div class="header">
-      <h1 class="brand">PuckScores</h1>
-    </div>
-  
-    <form (ngSubmit)="register()" #registerForm="ngForm" class="register-form">
-      <input
-        type="email"
-        name="email"
-        [(ngModel)]="email"
-        #emailRef="ngModel"
-        placeholder="Email"
-        required
-        email
-      />
-      <div *ngIf="emailRef.invalid && emailRef.touched" class="error-msg">
-        Valid email is required.
-      </div>
-  
-      <input
-        type="password"
-        name="password"
-        [(ngModel)]="password"
-        #passwordRef="ngModel"
-        placeholder="Password"
-        required
-        minlength="6"
-      />
-      <div *ngIf="passwordRef.invalid && passwordRef.touched" class="error-msg">
-        Password must be at least 6 characters.
-      </div>
-  
-      <button
-        type="submit"
-        [disabled]="registerForm.invalid"
-        class="register-btn"
-        >
-        Register
-        </button>
-
-
-  
-      <div class="error" *ngIf="error">{{ error }}</div>
-  
-      <div class="login-link">
-        Already have an account?
-        <a routerLink="/login">Login here</a>
-      </div>
-    </form>
+  <div class="header">
+    <h1 class="brand">PuckScores</h1>
   </div>
-  
+
+  <form (ngSubmit)="register()" #registerForm="ngForm" class="register-form" autocomplete="on">
+    <input
+      type="email"
+      name="email"
+      [(ngModel)]="email"
+      #emailRef="ngModel"
+      placeholder="Email"
+      required
+      email
+      autocomplete="email"
+    />
+    <div *ngIf="emailRef.invalid && emailRef.touched" class="error-msg">
+      Valid email is required.
+    </div>
+
+    <input
+      type="password"
+      name="password"
+      [(ngModel)]="password"
+      #passwordRef="ngModel"
+      placeholder="Password"
+      required
+      minlength="6"
+      autocomplete="new-password"
+    />
+    <div *ngIf="passwordRef.invalid && passwordRef.touched" class="error-msg">
+      Password must be at least 6 characters.
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="registerForm.invalid"
+      class="register-btn"
+    >
+      Register
+    </button>
+
+    <div class="error" *ngIf="error">{{ error }}</div>
+
+    <div class="login-link">
+      Already have an account?
+      <a routerLink="/login">Login here</a>
+    </div>
+  </form>
+</div>

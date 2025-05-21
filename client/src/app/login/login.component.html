@@ -1,30 +1,39 @@
 <div class="login-container">
-    <div class="welcome-banner">
-      <p class="welcome-sub">Welcome to</p>
-      <h1 class="brand-title">PuckScores</h1>
-      
-    </div>
-  
-    <div class="login-card">
-      <h2>Login</h2>
-  
-      <form (ngSubmit)="login()" #loginForm="ngForm">
-        <label>Email</label>
-        <input type="email" name="email" [(ngModel)]="email" required />
-  
-        <label>Password</label>
-        <input type="password" name="password" [(ngModel)]="password" required />
-  
-        <button type="submit" [disabled]="!loginForm.valid">Login</button>
-      </form>
-
-      <p style="text-align: center; margin-top: 1rem;">
-        Don't have an account? 
-        <a routerLink="/register" style="color: #0a3d62; text-decoration: underline;">
-          Register here
-        </a>
-      </p>
-      
-    </div>
+  <div class="welcome-banner">
+    <p class="welcome-sub">Welcome to</p>
+    <h1 class="brand-title">PuckScores</h1>
   </div>
-  
+
+  <div class="login-card">
+    <h2>Login</h2>
+
+    <form (ngSubmit)="login()" #loginForm="ngForm" autocomplete="on">
+      <label>Email</label>
+      <input 
+        type="email" 
+        name="email" 
+        [(ngModel)]="email" 
+        required 
+        autocomplete="email"
+      />
+
+      <label>Password</label>
+      <input 
+        type="password" 
+        name="password" 
+        [(ngModel)]="password" 
+        required 
+        autocomplete="current-password"
+      />
+
+      <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    </form>
+
+    <p style="text-align: center; margin-top: 1rem;">
+      Don't have an account? 
+      <a routerLink="/register" style="color: #0a3d62; text-decoration: underline;">
+        Register here
+      </a>
+    </p>
+  </div>
+</div>

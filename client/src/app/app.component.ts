@@ -1,18 +1,33 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common'; // ✅ Import CommonModule
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, CommonModule], // ✅ Add CommonModule here
+  imports: [CommonModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'hockeyScores';
+  currentRoute = '';
+
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.currentRoute = event.url;
+      });
+  }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token') || !!localStorage.getItem('firebaseToken');
+    return !!localStorage.getItem('token');
+  }
+
+  showNavbar(): boolean {
+    const hiddenRoutes = ['/login', '/register'];
+    return this.isAuthenticated() && !hiddenRoutes.includes(this.currentRoute);
   }
 }

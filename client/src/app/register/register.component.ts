@@ -21,29 +21,42 @@ export class RegisterComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   register(): void {
+    console.log('📨 Register function triggered');
+
     const trimmedEmail = this.email.trim();
     const trimmedPassword = this.password.trim();
+
+    if (!trimmedEmail || !trimmedPassword) {
+      this.error = 'Please enter both email and password.';
+      return;
+    }
 
     this.http.post<any>(`${environment.API_URL}/api/auth/register`, {
       email: trimmedEmail,
       password: trimmedPassword
     }).subscribe({
       next: () => {
+        console.log('✅ Registered successfully');
+
+        // Auto-login after registration
         this.http.post<any>(`${environment.API_URL}/api/auth/login`, {
           email: trimmedEmail,
           password: trimmedPassword
         }).subscribe({
           next: (res) => {
+            console.log('🔓 Auto-login success:', res);
             localStorage.setItem('token', res.token);
             this.router.navigate(['/home']);
           },
           error: (err) => {
-            this.error = "Registered, but login failed: " + (err.error.message || 'Unknown error');
+            console.error('⚠️ Auto-login failed:', err);
+            this.error = "Registered, but login failed: " + (err.error?.message || 'Unknown error');
           }
         });
       },
       error: (err) => {
-        this.error = err.error.message || "Registration failed";
+        console.error('❌ Registration failed:', err);
+        this.error = err.error?.message || "Registration failed";
       }
     });
   }
