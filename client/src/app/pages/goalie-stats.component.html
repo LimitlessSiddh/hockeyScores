@@ -1,0 +1,47 @@
+<div *ngIf="loading">Loading goalie stats...</div>
+
+<div *ngIf="!loading">
+  <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Search by name or team..." class="search-box" />
+
+  <select [(ngModel)]="selectedTeam" (change)="onTeamChange()" class="filter-dropdown">
+    <option value="">All Teams</option>
+    <option *ngFor="let team of teamOptions" [value]="team">{{ team }}</option>
+  </select>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th (click)="sortBy('name')">
+          Goalie <span *ngIf="sortField === 'name'">{{ sortAsc ? '▲' : '▼' }}</span>
+        </th>
+        <th (click)="sortBy('team')">
+          Team <span *ngIf="sortField === 'team'">{{ sortAsc ? '▲' : '▼' }}</span>
+        </th>
+        <th (click)="sortBy('shotsAgainst')">
+          Shots Against <span *ngIf="sortField === 'shotsAgainst'">{{ sortAsc ? '▲' : '▼' }}</span>
+        </th>
+        <th (click)="sortBy('goalsAgainst')">
+          Goals Against <span *ngIf="sortField === 'goalsAgainst'">{{ sortAsc ? '▲' : '▼' }}</span>
+        </th>
+        <th (click)="sortBy('savePct')">
+          Save % <span *ngIf="sortField === 'savePct'">{{ sortAsc ? '▲' : '▼' }}</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let goalie of goalies">
+        <td>{{ goalie.name }}</td>
+        <td>{{ goalie.team }}</td>
+        <td>{{ goalie.shotsAgainst }}</td>
+        <td>{{ goalie.goalsAgainst }}</td>
+        <td>{{ goalie.savePct }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="page === 1">Previous</button>
+    <span>Page {{ page }}</span>
+    <button (click)="nextPage()">Next</button>
+  </div>
+</div>
