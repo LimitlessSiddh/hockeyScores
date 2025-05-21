@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-player-stats',
@@ -31,7 +32,7 @@ export class PlayerStatsComponent implements OnInit {
   fetchPlayoffPlayerStats() {
     this.loading = true;
 
-    this.http.get<any[]>(`http://localhost:5050/api/stats/playoff-players`)
+    this.http.get<any[]>(`${environment.API_URL}/api/stats/playoff-players`)
       .subscribe(data => {
         this.players = data;
         this.teams = ['All', ...Array.from(new Set(data.map(p => p.team)))];
