@@ -1,14 +1,22 @@
 // db.ts
-import { Pool } from 'pg';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false // ✅ Required for Render and most hosted PG providers
-  }
-});
+const connectDB = async () => {
+  try {
+    const uri = process.env.MONGODB_URI || '';
+    if (!uri) {
+      throw new Error('❌ MONGODB_URI is not defined in environment variables');
+    }
 
-export default pool;
+    await mongoose.connect(uri);
+    console.log('✅ MongoDB connected successfully');
+  } catch (error) {
+    console.error('❌ MongoDB connection failed:', error);
+    process.exit(1);
+  }
+};
+
+export default connectDB;
